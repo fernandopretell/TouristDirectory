@@ -62,22 +62,7 @@ Se han incluido comentarios en el código para explicar las decisiones de diseñ
 
 ## Repositorio
 
-El proyecto está disponible en [GitHub](https://github.com/fernandopretell/tourist-directory-app).
-
-## Cómo Contribuir
-
-Las contribuciones son bienvenidas. Por favor, sigue los pasos a continuación:
-
-1. Haz un fork del proyecto.
-2. Crea una rama para tu nueva funcionalidad (`git checkout -b feature/nueva-funcionalidad`).
-3. Haz commit de tus cambios (`git commit -m 'Añadir nueva funcionalidad'`).
-4. Empuja tus cambios a la rama (`git push origin feature/nueva-funcionalidad`).
-5. Abre un Pull Request.
-
-## Contacto
-
-Para cualquier consulta o sugerencia, por favor contacta a [fernandopretell93@gmail.com](fernandopretell93@gmail.com).
-
+El proyecto está disponible en [GitHub](https://github.com/fernandopretell/TouristDirectory).
 
 ## Configuración del Proyecto
 
@@ -91,4 +76,8 @@ Para cualquier consulta o sugerencia, por favor contacta a [fernandopretell93@gm
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/fernandopretell/tourist-directory-app.git
+   git clone https://github.com/fernandopretell/TouristDirectory.git
+
+## Contacto
+
+Para cualquier consulta o sugerencia, por favor contacta a [fernandopretell93@gmail.com](fernandopretell93@gmail.com).
