@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tourist Directory</string>
+    <string name="place_image_description">descripción del lugar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="place_rating">Rating: %1$.1f</string>
+    <string name="total_ratings">%1$d calificaciones</string>
+    <string name="profile_photo_description">Descripción de la foto\n</string>
+    <string name="ver_en_mapa">Ver en mapa</string>
+    <string name="reviews">Reviews</string>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/placeListFragment">
+
+    <fragment
+        android:id="@+id/placeListFragment"
+        android:name="com.fulbiopretell.touristdirectory.presentation.place_list.PlaceListFragment"
+        android:label="Place List"
+        tools:layout="@layout/fragment_place_list">
+        <action
+            android:id="@+id/action_placeListFragment_to_placeDetailFragment"
+            app:destination="@id/placeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeDetailFragment"
+        android:name="com.fulbiopretell.touristdirectory.presentation.place_detail.PlaceDetailFragment"
+        android:label="PlaceDetailFragment" >
+        <action
+            android:id="@+id/action_placeDetailFragment_to_mapDialogFragment"
+            app:destination="@id/mapDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/mapDialogFragment"
+        android:name="com.fulbiopretell.touristdirectory.presentation.place_detail.MapDialogFragment"
+        android:label="MapDialogFragment" />
+
+</navigation>
