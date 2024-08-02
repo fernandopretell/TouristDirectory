@@ -1,5 +1,9 @@
 # Tourist Directory App
 
+## Nota Importante
+
+**Aviso:** En esta ocasión, el archivo `gradle.properties` está siendo subido al repositorio solo por cuestiones de pruebas del reto técnico.
+
 ## Descripción
 
 La Tourist Directory App es una aplicación móvil Android Nativo, como reto técnico para la empresa  Gestion Source, este aplicativo permite a los usuarios explorar lugares turísticos. La aplicación incluye una pantalla de splash, un listado de lugares, detalles del lugar seleccionado y una pantalla de mapa para visualizar la ubicación del lugar.

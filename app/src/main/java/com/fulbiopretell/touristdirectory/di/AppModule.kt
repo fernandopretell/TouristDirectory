@@ -1,9 +1,12 @@
 package com.fulbiopretell.touristdirectory.di
 
+import android.content.Context
 import com.fulbiopretell.touristdirectory.data.source.remote.ApiService
+import com.fulbiopretell.touristdirectory.util.KeystoreUtil
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -39,5 +42,11 @@ object AppModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiKey(@ApplicationContext context: Context): String? {
+        return KeystoreUtil.getApiKey(context)
     }
 }

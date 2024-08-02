@@ -6,34 +6,33 @@ import com.fulbiopretell.touristdirectory.data.model.PlaceDetailResponse
 import com.fulbiopretell.touristdirectory.data.model.PlaceEntity
 import com.fulbiopretell.touristdirectory.data.model.PlaceResult
 import com.fulbiopretell.touristdirectory.data.model.SimpleReview
-import com.fulbiopretell.touristdirectory.util.Constants
 
 //con esta funcion obtengo la url de la imagen de la api de google
 fun getPhotoUrl(photoReference: String, apiKey: String, maxWidth: Int = 400): String {
     return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=$maxWidth&photoreference=$photoReference&key=$apiKey"
 }
 
-fun PlaceResult.toPlace(): Place {
+fun PlaceResult.toPlace(apiKey: String): Place {
     val fotoReference = this.photos?.firstOrNull()?.photo_reference ?: ""
     return Place(
         id = this.place_id,
         title = this.name,
         description = this.vicinity ?: "No description available",
-        imageUrl = getPhotoUrl(fotoReference, Constants.GOOGLE_API_KEY)
+        imageUrl = getPhotoUrl(fotoReference, apiKey)
     )
 }
 
-fun List<PlaceResult>.toPlacesConverter(): List<Place> {
-    return this.map { it.toPlace() }
+fun List<PlaceResult>.toPlacesConverter(apiKey: String): List<Place> {
+    return this.map { it.toPlace(apiKey) }
 }
 
-fun PlaceDetailResponse.toPlace(): PlaceDetail {
+fun PlaceDetailResponse.toPlace(apiKey: String): PlaceDetail {
     val fotoReference = this.photos?.firstOrNull()?.photo_reference ?: ""
     return PlaceDetail(
         id = this.place_id,
         title = this.name,
         description = this.vicinity,
-        imageUrl = getPhotoUrl(fotoReference, Constants.GOOGLE_API_KEY),
+        imageUrl = getPhotoUrl(fotoReference, apiKey),
         address = this.vicinity ?: "No address available",
         latitude = this.geometry.location.lat,
         longitude = this.geometry.location.lng,

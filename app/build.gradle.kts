@@ -1,3 +1,4 @@
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -18,17 +19,63 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "MAPS_API_KEY", "\"\"")
+
+    }
+
+    flavorDimensions("version")
+
+    productFlavors {
+        create("development") {
+            dimension = "version"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            val localProperties = Properties()
+            val localPropertiesFile = rootProject.file("local.properties")
+            if (localPropertiesFile.exists() && localPropertiesFile.isFile) {
+                localProperties.load(localPropertiesFile.inputStream())
+            }
+            val mapsApiKey: String = localProperties.getProperty("DEV_MAPS_API_KEY", "")
+            buildConfigField("String", "MAPS_API_KEY", "\"$mapsApiKey\"")
+            manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
+        }
+        create("staging") {
+            dimension = "version"
+            applicationIdSuffix = ".staging"
+            versionNameSuffix = "-staging"
+            val localProperties = Properties()
+            val localPropertiesFile = rootProject.file("local.properties")
+            if (localPropertiesFile.exists() && localPropertiesFile.isFile) {
+                localProperties.load(localPropertiesFile.inputStream())
+            }
+            val mapsApiKey: String = localProperties.getProperty("STAGING_MAPS_API_KEY", "")
+            buildConfigField("String", "MAPS_API_KEY", "\"$mapsApiKey\"")
+            manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
+        }
+        create("production") {
+            dimension = "version"
+            val localProperties = Properties()
+            val localPropertiesFile = rootProject.file("local.properties")
+            if (localPropertiesFile.exists() && localPropertiesFile.isFile) {
+                localProperties.load(localPropertiesFile.inputStream())
+            }
+            val mapsApiKey: String = localProperties.getProperty("PROD_MAPS_API_KEY", "")
+            buildConfigField("String", "MAPS_API_KEY", "\"$mapsApiKey\"")
+            manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
+        }
     }
 
     buildTypes {
-        release {
+        getByName("debug") {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        }
+        getByName("release") {
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -39,6 +86,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -88,6 +136,8 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
+    //Keystore
+    implementation(libs.key.store)
 }
 
 kapt {
