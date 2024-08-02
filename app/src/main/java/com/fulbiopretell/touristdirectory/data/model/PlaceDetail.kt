@@ -12,6 +12,7 @@ data class PlaceDetail(
     val userRatingsTotal: Double,
     val openingNow: Boolean,
     val reviews: List<SimpleReview>,
+    val imageBase64: String? = null
 )
 
 data class SimpleReview(

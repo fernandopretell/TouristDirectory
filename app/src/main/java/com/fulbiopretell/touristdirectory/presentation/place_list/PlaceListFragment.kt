@@ -49,6 +49,10 @@ class PlaceListFragment : Fragment(R.layout.fragment_place_list) {
                     binding.pb.visibility = View.GONE
                     Toast.makeText(context, result.exception.message, Toast.LENGTH_SHORT).show()
                 }
+
+                else -> {
+                    binding.pb.visibility = View.GONE
+                }
             }
         })
 

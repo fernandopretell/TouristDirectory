@@ -18,8 +18,8 @@ class PlaceListViewModel @Inject constructor(
     private val getPlacesUseCase: GetPlacesUseCase
 ) : ViewModel() {
 
-    private val _places = MutableLiveData<Result<List<Place>>>()
-    val places: LiveData<Result<List<Place>>> get() = _places
+    private val _places = MutableLiveData<Result<List<Place>>?>()
+    val places: LiveData<Result<List<Place>>?> get() = _places
 
     init {
         fetchNearbyPlaces()

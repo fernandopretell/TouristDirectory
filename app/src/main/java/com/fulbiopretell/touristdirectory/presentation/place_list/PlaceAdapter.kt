@@ -1,13 +1,15 @@
 package com.fulbiopretell.touristdirectory.presentation.place_list
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.fulbiopretell.touristdirectory.R
 import com.fulbiopretell.touristdirectory.data.model.Place
 import com.fulbiopretell.touristdirectory.databinding.ItemPlaceBinding
+
 
 class PlaceAdapter(private val onPlaceClick: (String) -> Unit) : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
 
@@ -39,7 +41,17 @@ class PlaceAdapter(private val onPlaceClick: (String) -> Unit) : RecyclerView.Ad
         fun bind(place: Place) {
             binding.placeName.text = place.title
             binding.placeDescription.text = place.description
-            Glide.with(binding.placeImage.context).load(place.imageUrl).into(binding.placeImage)
+            try {
+                Glide.with(binding.placeImage.context).load(place.imageUrl).into(binding.placeImage)
+            } catch (e: Exception) {
+                val bitmap = place.imageBase64?.let { base64ToBitmap(it) }
+                binding.placeImage.setImageBitmap(bitmap)
+            }
+        }
+
+        fun base64ToBitmap(base64Str: String): Bitmap {
+            val decodedBytes = Base64.decode(base64Str, Base64.DEFAULT)
+            return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
         }
     }
 }

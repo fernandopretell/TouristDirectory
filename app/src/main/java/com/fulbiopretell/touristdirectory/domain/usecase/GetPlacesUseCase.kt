@@ -6,5 +6,5 @@ import com.fulbiopretell.touristdirectory.util.Result
 import javax.inject.Inject
 
 class GetPlacesUseCase @Inject constructor(private val placeRepository: PlaceRepository){
-    suspend operator fun invoke(): Result<List<Place>> = placeRepository.getPlaces()
+    suspend operator fun invoke(): Result<List<Place>>? = placeRepository.getPlaces()
 }

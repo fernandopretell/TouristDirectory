@@ -57,7 +57,8 @@ fun PlaceEntity.toPlace(): Place {
         id = this.id,
         title = this.name,
         description = this.address,
-        imageUrl = this.imageUrl
+        imageUrl = this.imageUrl,
+        imageBase64 = this.imageBase64
     )
 }
 
@@ -70,7 +71,8 @@ fun Place.toPlaceEntity(): PlaceEntity {
         id = this.id,
         name = this.title,
         address = this.description,
-        imageUrl = this.imageUrl
+        imageUrl = this.imageUrl,
+        imageBase64 = this.imageBase64
     )
 }
 
